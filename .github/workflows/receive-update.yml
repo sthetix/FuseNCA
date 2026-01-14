@@ -5,7 +5,7 @@ on:
     types: [firmware_update]
 
 jobs:
-  update-readme:
+  update-fusenca:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -20,10 +20,10 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4
+        run: pip install requests
 
-      - name: Update README with new firmware data
-        run: python .github/scripts/update_from_payload.py
+      - name: Update FuseNCA data (fuses.json + README.md)
+        run: python .github/scripts/update_fusenca.py
         env:
           PAYLOAD_VERSION: ${{ github.event.client_payload.version }}
           PAYLOAD_NCA_FAT: ${{ github.event.client_payload.nca_fat }}
@@ -34,7 +34,7 @@ jobs:
           if [ -f ".github/has_changes" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add README.md
+            git add fuses.json README.md
             git commit -m "Auto-update: Firmware ${{ github.event.client_payload.version }} from AutoFW"
             git push
           fi

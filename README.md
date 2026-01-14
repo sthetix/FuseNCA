@@ -2,9 +2,15 @@
 
 Nintendo Switch system title NCA references and anti-downgrade fuse information.
 
+## Data Access
+
+- **JSON API**: `fuses.json` - Machine-readable data (recommended for automation)
+- **Raw URL**: https://raw.githubusercontent.com/sthetix/FuseNCA/master/fuses.json
+- **README**: Human-readable table (below)
+
 ## System Firmware Reference
 
-Combined data from Switchbrew (anti-downgrade fuses) and NxNandManager (system title NCAs).
+Combined data from Switchbrew (anti-downgrade fuses) and AutoFW (system title NCAs from Nintendo CDN).
 
 | Firmware | Fuses (Prod) | System Title NCA | exFAT Title NCA |
 | --- | --- | --- | --- |
@@ -62,7 +68,7 @@ Combined data from Switchbrew (anti-downgrade fuses) and NxNandManager (system t
 | 9.1.0 | 12 | c5fbb49f2e3648c8cfca758020c53ecb.nca | c9bd4eda34c91a676de09951bb8179ae.nca |
 | 9.0.1 | 11 | fd1ffb82dc1da76346343de22edbc97c.nca | 3b444768f8a36d0ddd85635199f9676f.nca |
 | 9.0.0 | 11 | a6af05b33f8f903aab90c8b0fcbcc6a4.nca | 3b444768f8a36d0ddd85635199f9676f.nca |
-| 8.1.1 | 10 | e9bb0602e939270a9348bddd9b78827b.nca | 96f4b8b729ade072cc661d9700955258.nca |
+| 8.1.1 | 10 | 724d9b432929ea43e787ad81bf09ae65.nca | 96f4b8b729ade072cc661d9700955258.nca |
 | 8.1.0 | 10 | 7eedb7006ad855ec567114be601b2a9d.nca | 96f4b8b729ade072cc661d9700955258.nca |
 | 8.0.1 | 9 | 6c5426d27c40288302ad616307867eba.nca | b2708136b24bbe206e502578000b1998.nca |
 | 8.0.0 | 9 | 4fe7b4abcea4a0bcc50975c1a926efcb.nca | b2708136b24bbe206e502578000b1998.nca |
@@ -71,7 +77,7 @@ Combined data from Switchbrew (anti-downgrade fuses) and NxNandManager (system t
 | 6.2.0 | 8 | 6dfaaf1a3cebda6307aa770d9303d9b6.nca | 97cb7dc89421decc0340aec7abf8e33b.nca |
 | 6.1.0 | 7 | 1d21680af5a034d626693674faf81b02.nca | d5186022d6080577b13f7fd8bcba4dbb.nca |
 | 6.0.1 | 7 | 663e74e45ffc86fbbaeb98045feea315.nca | d5186022d6080577b13f7fd8bcba4dbb.nca |
-| 6.0.0 | 7 | 258c1786b0f6844250f34d9c6f66095b.nca | d5186022d6080577b13f7fd8bcba4dbb.nca |
+| 6.0.0 | 7 | 286e30bafd7e4197df6551ad802dd815.nca | 711b5fc83a1f07d443dfc36ba606033b.nca |
 | 5.1.0 | 6 | fce3b0ea366f9c95fe6498b69274b0e7.nca | c9e500edc7bb0fde52eab246028ef84c.nca |
 | 5.0.2 | 6 | c5758b0cb8c6512e8967e38842d35016.nca | 432f5cc48e6c1b88de2bc882204f03a1.nca |
 | 5.0.1 | 6 | 7f5529b7a092b77bf093bdf2f9a3bf96.nca | 432f5cc48e6c1b88de2bc882204f03a1.nca |
@@ -91,4 +97,10 @@ Combined data from Switchbrew (anti-downgrade fuses) and NxNandManager (system t
 ## Sources
 
 - Anti-downgrade fuses: [Switchbrew - Fuses](https://switchbrew.org/wiki/Fuses)
-- System title NCAs: [NxNandManager - NxStorage.cpp](https://github.com/impeeza/NxNandManager/blob/b638586cd647e2e18162bf90d0ae95edbb176b6b/NxNandManager/NxStorage.cpp)
+- System title NCAs: AutoFW (fetched from Nintendo CDN)
+
+## Auto-Update
+
+This repository is automatically updated when new firmware data is detected.
+
+Last updated: 2026-01-14T04:41:05.597131+00:00
