@@ -133,9 +133,13 @@ def fetch_switchbrew_fuses() -> dict[str, int]:
     try:
         import requests
 
-        response = requests.get(SWITCHBREW_URL, timeout=10)
+        # Fetch wikitext source via MediaWiki API (not rendered HTML)
+        api_url = "https://switchbrew.org/w/api.php"
+        params = {"action": "parse", "page": "Fuses", "prop": "wikitext", "format": "json"}
+        response = requests.get(api_url, params=params, timeout=15)
         response.raise_for_status()
-        content = response.text
+        data = response.json()
+        content = data["parse"]["wikitext"]["*"]
     except ImportError as e:
         _print_error("requests module not installed")
         sys.exit(1)
@@ -143,39 +147,35 @@ def fetch_switchbrew_fuses() -> dict[str, int]:
         _print_error(f"fetching Switchbrew: {e}")
         return {}
 
-    # Extract the Anti-downgrade table - handle multiple formats
-    # Try pattern 1: "System version" header
-    table_match = re.search(
-        r"\| System version.*?\n(?:\|[^\n]*\n)*?((?:\|[\s\d.\-]+?\|[\s\d.]+?\|[\s\d.]+?\|\n)+)",
-        content,
-    )
-
-    # Try pattern 2: "System Version" header (capital V)
-    if not table_match:
-        table_match = re.search(
-            r"\| System Version.*?\n(?:\|[^\n]*\n)*?((?:\|[\s\d.\-]+?\|[\s\d.]+?\|[\s\d.]+?\|\n)+)",
-            content,
-        )
-
-    if not table_match:
-        _print_error("finding Anti-downgrade table on Switchbrew")
-        return {}
-
+    # Parse wikitext table — each row is split across multiple lines:
+    # | version
+    # | fuse_count
+    # | dev_count
+    # |-
     fuse_map: dict[str, int] = {}
+    lines = content.split("\n")
+    i = 0
+    while i < len(lines):
+        line = lines[i].strip()
+        # Wikitext table rows start with | followed by version/range
+        if line.startswith("|") and "|-" not in line and "!" not in line:
+            version_str = line.lstrip("|").strip()
+            # Next line is production fuse count
+            if i + 1 < len(lines):
+                next_line = lines[i + 1].strip()
+                if next_line.startswith("|"):
+                    prod_str = next_line.lstrip("|").strip()
+                    try:
+                        fuse_count = int(prod_str)
+                        fuse_map[version_str] = fuse_count
+                        # Skip past this row (version, prod, dev, |-)
+                        i += 3 if i + 3 < len(lines) and "|-" in lines[i + 2] else 2
+                    except ValueError:
+                        pass
+        i += 1
 
-    for line in table_match.group(0).split("\n"):
-        if "|" not in line or "---" in line or "System version" in line.lower():
-            continue
-
-        parts = [p.strip() for p in line.split("|")[1:-1]]
-        if len(parts) >= 2:
-            version_range = parts[0]
-            prod_fuses = parts[1]
-            try:
-                fuse_count = int(prod_fuses)
-                fuse_map[version_range] = fuse_count
-            except ValueError:
-                pass
+    if not fuse_map:
+        _print_error("parsing Anti-downgrade table from Switchbrew wikitext")
 
     return fuse_map
 
