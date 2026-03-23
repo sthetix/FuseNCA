@@ -414,17 +414,22 @@ def main() -> int:
 
     # Generate and write README
     readme_content = generate_readme(updated_data)
-    write_readme(readme_content)
-    print("Generated README.md from fuses.json")
 
-    # Check if README actually changed
+    # Check if README actually changed (read BEFORE writing)
     if README_FILE.exists():
         current_readme = README_FILE.read_text()
         if readme_content.strip() != current_readme.strip():
+            write_readme(readme_content)
+            print("Generated README.md from fuses.json")
             create_marker_file()
             print("Changes detected - marker file created")
         else:
             print("No changes to README.md")
+    else:
+        write_readme(readme_content)
+        print("Generated README.md from fuses.json")
+        create_marker_file()
+        print("Changes detected - marker file created")
 
     return 0
 
