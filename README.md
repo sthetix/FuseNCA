@@ -14,7 +14,7 @@ Combined data from Switchbrew (anti-downgrade fuses) and AutoFW (system title NC
 
 | Firmware | Fuses (Prod) | System Title NCA | exFAT Title NCA |
 | --- | --- | --- | --- |
-| 22.0.0 | 23 | cbf77f16ac79778d20fde55ac2f2257e | fe3c3e687a54d43b1a31469f9d6c6172 |
+| 22.0.0 | 23 | cbf77f16ac79778d20fde55ac2f2257e.nca | fe3c3e687a54d43b1a31469f9d6c6172.nca |
 | 21.2.0 | 22 | ac1ef488027ac5d9222d74393f03507f.nca | 061e68902d7a8f431787428bd328a2fa.nca |
 | 21.1.0 | 22 | 738da79326689ef4b72f702693bfc48a.nca | 5d920340732acee21eda71743688d71a.nca |
 | 21.0.1 | 22 | e7273dd5b560d0ba282fc64206fecb56.nca | 5d920340732acee21eda71743688d71a.nca |

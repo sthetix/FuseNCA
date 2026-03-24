@@ -483,8 +483,8 @@
     {
       "version": "22.0.0",
       "fuses_production": 23,
-      "system_title_nca": "cbf77f16ac79778d20fde55ac2f2257e",
-      "exfat_title_nca": "fe3c3e687a54d43b1a31469f9d6c6172"
+      "system_title_nca": "cbf77f16ac79778d20fde55ac2f2257e.nca",
+      "exfat_title_nca": "fe3c3e687a54d43b1a31469f9d6c6172.nca"
     }
   ]
 }
