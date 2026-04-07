@@ -3,6 +3,17 @@ name: Receive Firmware Update
 on:
   repository_dispatch:
     types: [firmware_update]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Firmware version (e.g. 22.1.0)'
+        required: true
+      nca_fat:
+        description: 'FAT NCA filename (e.g. abc123.nca)'
+        required: true
+      nca_exfat:
+        description: 'exFAT NCA filename (e.g. def456.nca)'
+        required: false
 
 jobs:
   update-fusenca:
@@ -25,9 +36,9 @@ jobs:
       - name: Update FuseNCA data (fuses.json + README.md)
         run: python .github/scripts/update_fusenca.py
         env:
-          PAYLOAD_VERSION: ${{ github.event.client_payload.version }}
-          PAYLOAD_NCA_FAT: ${{ github.event.client_payload.nca_fat }}
-          PAYLOAD_NCA_EXFAT: ${{ github.event.client_payload.nca_exfat }}
+          PAYLOAD_VERSION: ${{ github.event.client_payload.version || inputs.version }}
+          PAYLOAD_NCA_FAT: ${{ github.event.client_payload.nca_fat || inputs.nca_fat }}
+          PAYLOAD_NCA_EXFAT: ${{ github.event.client_payload.nca_exfat || inputs.nca_exfat }}
 
       - name: Commit and push changes
         run: |
@@ -35,6 +46,6 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add fuses.json README.md
-            git commit -m "Auto-update: Firmware ${{ github.event.client_payload.version }} from AutoFW"
+            git commit -m "Auto-update: Firmware ${{ github.event.client_payload.version || inputs.version }} from AutoFW"
             git push
           fi
