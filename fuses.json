@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/sthetix/FuseNCA/master/schema.json",
   "format_version": "1.0",
-  "last_updated": "2026-04-07T05:04:39.918817+00:00",
+  "last_updated": "2026-06-16T07:51:56.375568+00:00",
   "sources": {
     "switchbrew": "https://switchbrew.org/wiki/Fuses"
   },
@@ -491,6 +491,12 @@
       "fuses_production": 23,
       "system_title_nca": "2464b8c4d9cd53c5d957faa6dc8e3788.nca",
       "exfat_title_nca": "fe3c3e687a54d43b1a31469f9d6c6172.nca"
+    },
+    {
+      "version": "22.5.0",
+      "fuses_production": 23,
+      "system_title_nca": "f1a867e9f4abb0d6e3c6682a148cff1a.nca",
+      "exfat_title_nca": "1266424f83106345eea5503e51738e82.nca"
     }
   ]
 }
