@@ -133,13 +133,12 @@ def fetch_switchbrew_fuses() -> dict[str, int]:
     try:
         import requests
 
-        # Fetch wikitext source via MediaWiki API (not rendered HTML)
-        api_url = "https://switchbrew.org/w/api.php"
-        params = {"action": "parse", "page": "Fuses", "prop": "wikitext", "format": "json"}
-        response = requests.get(api_url, params=params, timeout=15)
+        # Fetch raw wikitext directly. The MediaWiki API is blocked from
+        # GitHub-hosted runners and returns HTTP 403.
+        raw_url = "https://switchbrew.org/w/index.php?title=Fuses&action=raw"
+        response = requests.get(raw_url, timeout=15)
         response.raise_for_status()
-        data = response.json()
-        content = data["parse"]["wikitext"]["*"]
+        content = response.text
     except ImportError as e:
         _print_error("requests module not installed")
         sys.exit(1)
