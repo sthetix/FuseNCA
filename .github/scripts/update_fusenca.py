@@ -397,6 +397,9 @@ def main() -> int:
     # Add or update new firmware from AutoFW webhook
     if new_fw:
         fuse_count = get_fuse_count_for_version(fuse_map, new_fw["version"])
+        existing_entry = updated_data.get_entry(new_fw["version"])
+        if fuse_count is None and existing_entry is not None:
+            fuse_count = existing_entry.fuses_production
 
         new_entry = FirmwareEntry(
             version=new_fw["version"],
