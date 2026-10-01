@@ -108,4 +108,4 @@ Combined data from Switchbrew (anti-downgrade fuses) and AutoFW (system title NC
 
 This repository is automatically updated when new firmware data is detected.
 
-Last updated: 2026-10-01T12:45:59.791576+00:00
+Last updated: 2026-10-01T13:04:21.345787+00:00
