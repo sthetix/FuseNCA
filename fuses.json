@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/sthetix/FuseNCA/master/schema.json",
   "format_version": "1.0",
-  "last_updated": "2026-11-10T13:56:38.964207+00:00",
+  "last_updated": "2026-11-10T22:39:27.300311+00:00",
   "sources": {
     "switchbrew": "https://switchbrew.org/wiki/Fuses"
   },
