@@ -14,6 +14,7 @@ Combined data from Switchbrew (anti-downgrade fuses) and AutoFW (system title NC
 
 | Firmware | Fuses (Prod) | System Title NCA | exFAT Title NCA |
 | --- | --- | --- | --- |
+| 23.5.0 | - | 882887ab27c1d9afadefb3760d8b3357.nca | 16dc2da330952377f1352832606308d6.nca |
 | 23.0.1 | 24 | 00e57b67b4dbd750a2df0574cddc123d.nca | 16510dde912c6c6894d573f17006f113.nca |
 | 23.0.0 | 24 | 2377a6f36c2cc42c121cad2ffac236a9.nca | 16510dde912c6c6894d573f17006f113.nca |
 | 22.5.0 | 23 | f1a867e9f4abb0d6e3c6682a148cff1a.nca | 1266424f83106345eea5503e51738e82.nca |
@@ -108,4 +109,4 @@ Combined data from Switchbrew (anti-downgrade fuses) and AutoFW (system title NC
 
 This repository is automatically updated when new firmware data is detected.
 
-Last updated: 2026-10-01T13:04:21.345787+00:00
+Last updated: 2026-11-10T13:56:38.964207+00:00
