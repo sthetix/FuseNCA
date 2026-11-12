@@ -410,6 +410,14 @@ def main() -> int:
         updated_data = updated_data.add_or_update_entry(new_entry)
         print(f"Added/updated firmware {new_fw['version']}")
 
+    for entry in updated_data.entries:
+        if entry.fuses_production is None:
+            _print_error(
+                f"No fuse count available for firmware {entry.version}; "
+                "leaving fuses.json and README.md unchanged. Retry after Switchbrew data is available."
+            )
+            return 1
+
     # Write JSON (source of truth)
     write_data(updated_data)
     print(f"Updated fuses.json with {len(updated_data.entries)} entries")
