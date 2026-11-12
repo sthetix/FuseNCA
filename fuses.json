@@ -512,7 +512,7 @@
     },
     {
       "version": "23.5.0",
-      "fuses_production": null,
+      "fuses_production": 25,
       "system_title_nca": "882887ab27c1d9afadefb3760d8b3357.nca",
       "exfat_title_nca": "16dc2da330952377f1352832606308d6.nca"
     }
